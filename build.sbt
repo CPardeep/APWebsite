@@ -1,3 +1,5 @@
+import play.sbt.routes.RoutesKeys
+
 name := "Recipies_New_Play_Version"
  
 version := "1.0" 
@@ -12,6 +14,10 @@ scalaVersion := "2.12.2"
 
 libraryDependencies ++= Seq( jdbc , ehcache , ws , specs2 % Test , guice )
 
-unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/test" )  
+unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/test" )
 
-      
+libraryDependencies ++= Seq(
+  "org.reactivemongo" %% "play2-reactivemongo" % "0.20.13-play27"
+)
+
+RoutesKeys.routesImport += "play.modules.reactivemongo.PathBindables._"
